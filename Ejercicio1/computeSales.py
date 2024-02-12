@@ -20,16 +20,24 @@ def calcular_costo_total(precios, ventas):
     for venta in ventas:
         producto = venta['Product']
         cantidad = venta['Quantity']
-        if producto in precios:
-            costo_total += precios[producto] * cantidad
-        else:
-            print(f"Producto '{producto}' no encontrado en el catálogo de precios.")
+        for precio in precios:
+            try:
+                title = precio['title']
+                if producto in title:
+                    costo_total += precio['price'] * cantidad
+                    print(f"{producto} {title} {cantidad} {costo_total}")
+                    break
+            except KeyError:
+                print("Venta con formato inválido.")
 
     return costo_total
 
 
 
 def main():
+    # Nombre del archivo de resultados
+    archivo_salida = '/Users/dalinaaideevillaocelotl/Desktop/Ejercicio1/SalesResults.txt'
+
     precios = cargar_datos("TC1.Productlist.json")
     ventas = cargar_datos("TC1.Sales.json")
 
@@ -44,6 +52,7 @@ def main():
         file.write(f"Tiempo de ejecución: {time.time() - start_time:.2f} segundos\n")
 
     print(f"Tiempo de ejecución: {time.time() - start_time:.2f} segundos")
+
 
 
 if __name__ == "__main__":

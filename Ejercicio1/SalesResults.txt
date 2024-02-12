@@ -1,2 +1,2 @@
-Costo total de todas las ventas: $0.00
+Costo total de todas las ventas: $2481.86
 Tiempo de ejecución: 0.00 segundos
